@@ -1,0 +1,48 @@
+﻿@model IEnumerable<payroll_app.Models.repository.AttendanceRegister>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Attendance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AttendanceTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employees)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Attendance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AttendanceTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employees.FirstName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AttendanceRegisterId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AttendanceRegisterId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AttendanceRegisterId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

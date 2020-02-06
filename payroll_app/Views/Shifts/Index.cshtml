@@ -1,0 +1,60 @@
+﻿@model IEnumerable<payroll_app.Models.repository.Shift>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ShiftCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShiftName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShiftTimeIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShiftTimeOut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeSpanz)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShiftCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShiftName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShiftTimeIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShiftTimeOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeSpanz)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ShiftId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ShiftId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ShiftId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<payroll_app.Models.repository.WorkerType>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkerTypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkerTypeCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrangeOrder)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkerTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkerTypeCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrangeOrder)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.WorkerTypeId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.WorkerTypeId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.WorkerTypeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
