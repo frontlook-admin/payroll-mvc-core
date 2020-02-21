@@ -13,7 +13,7 @@ namespace payroll_app.codeHelper
             return r.Next(1, 3);
         }
 
-        public static string randuserimgchooser(string hostenv)
+        public static string Randuserimgchooser(string hostenv)
         {
             if (rand().Equals(1))
             {
@@ -25,7 +25,7 @@ namespace payroll_app.codeHelper
             }
         }
 
-        public static string userimgchooser(string hostenv,string gender = null)
+        public static string Userimgchooser(string hostenv,string gender = null)
         {
             if (gender != null)
             {
@@ -39,12 +39,12 @@ namespace payroll_app.codeHelper
                 }
                 else
                 {
-                    return randuserimgchooser(hostenv);
+                    return Randuserimgchooser(hostenv);
                 }
             }
             else
             {
-                return randuserimgchooser(hostenv);
+                return Randuserimgchooser(hostenv);
             }
         }
 

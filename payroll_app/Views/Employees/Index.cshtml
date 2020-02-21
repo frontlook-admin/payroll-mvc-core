@@ -17,67 +17,73 @@
                 @Html.DisplayNameFor(model => model.EmployeePhoto)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
+                @Html.DisplayNameFor(model => model.AdultRegistrationNo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MiddleName)
+                @Html.DisplayNameFor(model => model.EmployeeCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                @Html.DisplayNameFor(model => model.PfNo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FullName)
+                @Html.DisplayNameFor(model => model.EmployeeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FatherOrHusbandName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Gender)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PrimaryMobileNo)
+                @Html.DisplayNameFor(model => model.PermanentAddress)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SecondaryMobileNo)
+                @Html.DisplayNameFor(model => model.CurrentAddress)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AreaStdCode)
+                @Html.DisplayNameFor(model => model.Nominee)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PhoneNo)
+                @Html.DisplayNameFor(model => model.MobileNo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EmailId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address1)
+                @Html.DisplayNameFor(model => model.PanNo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address2)
+                @Html.DisplayNameFor(model => model.AadharNo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address3)
+                @Html.DisplayNameFor(model => model.OffDay)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.City)
+                @Html.DisplayNameFor(model => model.JoinDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.District)
+                @Html.DisplayNameFor(model => model.LastWorkingDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pin)
+                @Html.DisplayNameFor(model => model.Active)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PostOffice)
+                @Html.DisplayNameFor(model => model.Departments)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PoliceStation)
+                @Html.DisplayNameFor(model => model.Designations)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Department)
+                @Html.DisplayNameFor(model => model.Grades)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Grade)
+                @Html.DisplayNameFor(model => model.Categories)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WorkerType)
+                @Html.DisplayNameFor(model => model.Shifts)
             </th>
             <th></th>
         </tr>
@@ -86,76 +92,82 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                <img class="img-thumbnail" src="data:image/jpeg;base64,@Convert.ToBase64String(item.EmployeePhoto)" 
-                     alt="@Html.DisplayFor(modelItem => item.FullName)" />
+                <img class="img-thumbnail" src="data:image/jpeg;base64,@Convert.ToBase64String(item.EmployeePhoto)"
+                     alt="@Html.DisplayFor(modelItem => item.EmployeeName)" />
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.AdultRegistrationNo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MiddleName)
+                @Html.DisplayFor(modelItem => item.EmployeeCode)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => item.PfNo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FullName)
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FatherOrHusbandName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Gender)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PrimaryMobileNo)
+                @Html.DisplayFor(modelItem => item.PermanentAddress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SecondaryMobileNo)
+                @Html.DisplayFor(modelItem => item.CurrentAddress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AreaStdCode)
+                @Html.DisplayFor(modelItem => item.Nominee)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PhoneNo)
+                @Html.DisplayFor(modelItem => item.MobileNo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EmailId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Address1)
+                @Html.DisplayFor(modelItem => item.PanNo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Address2)
+                @Html.DisplayFor(modelItem => item.AadharNo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Address3)
+                @Html.DisplayFor(modelItem => item.OffDay)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.City)
+                @Html.DisplayFor(modelItem => item.JoinDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.District)
+                @Html.DisplayFor(modelItem => item.LastWorkingDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Pin)
+                @Html.DisplayFor(modelItem => item.Active)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PostOffice)
+                @Html.DisplayFor(modelItem => item.Departments.DepartmentCode)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PoliceStation)
+                @Html.DisplayFor(modelItem => item.Designations.DesignationCode)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Department.DepartmentCode)
+                @Html.DisplayFor(modelItem => item.Grades.GradeCode)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Grade.GradeCode)
+                @Html.DisplayFor(modelItem => item.Categories.CategoryCode)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.WorkerType.WorkerTypeCode)
+                @Html.DisplayFor(modelItem => item.Shifts.ShiftCode)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
             </td>
         </tr>
 }

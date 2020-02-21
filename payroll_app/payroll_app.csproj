@@ -7,11 +7,6 @@
     <AssemblyOriginatorKeyFile>frontlook_signature.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Migrations\20200204062021_init.cs" />
-    <Compile Remove="Migrations\20200204062021_init.Designer.cs" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" />

@@ -10,22 +10,22 @@ using payroll_app.Models.repository;
 
 namespace payroll_app.Controllers
 {
-    public class WorkerTypesController : Controller
+    public class CategoriesController : Controller
     {
         private readonly payroll_app_context _context;
 
-        public WorkerTypesController(payroll_app_context context)
+        public CategoriesController(payroll_app_context context)
         {
             _context = context;
         }
 
-        // GET: WorkerTypes
+        // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.WorkerType.ToListAsync());
+            return View(await _context.Category.ToListAsync());
         }
 
-        // GET: WorkerTypes/Details/5
+        // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace payroll_app.Controllers
                 return NotFound();
             }
 
-            var workerType = await _context.WorkerType
-                .FirstOrDefaultAsync(m => m.WorkerTypeId == id);
-            if (workerType == null)
+            var category = await _context.Category
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(workerType);
+            return View(category);
         }
 
-        // GET: WorkerTypes/Create
+        // GET: Categories/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: WorkerTypes/Create
+        // POST: Categories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("WorkerTypeId,WorkerTypeName,WorkerTypeCode,ArrangeOrder")] WorkerType workerType)
+        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,CategoryCode,CategoryFormula")] Category category)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(workerType);
+                _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(workerType);
+            return View(category);
         }
 
-        // GET: WorkerTypes/Edit/5
+        // GET: Categories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace payroll_app.Controllers
                 return NotFound();
             }
 
-            var workerType = await _context.WorkerType.FindAsync(id);
-            if (workerType == null)
+            var category = await _context.Category.FindAsync(id);
+            if (category == null)
             {
                 return NotFound();
             }
-            return View(workerType);
+            return View(category);
         }
 
-        // POST: WorkerTypes/Edit/5
+        // POST: Categories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("WorkerTypeId,WorkerTypeName,WorkerTypeCode,ArrangeOrder")] WorkerType workerType)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName,CategoryCode,CategoryFormula")] Category category)
         {
-            if (id != workerType.WorkerTypeId)
+            if (id != category.CategoryId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace payroll_app.Controllers
             {
                 try
                 {
-                    _context.Update(workerType);
+                    _context.Update(category);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!WorkerTypeExists(workerType.WorkerTypeId))
+                    if (!CategoryExists(category.CategoryId))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace payroll_app.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(workerType);
+            return View(category);
         }
 
-        // GET: WorkerTypes/Delete/5
+        // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace payroll_app.Controllers
                 return NotFound();
             }
 
-            var workerType = await _context.WorkerType
-                .FirstOrDefaultAsync(m => m.WorkerTypeId == id);
-            if (workerType == null)
+            var category = await _context.Category
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(workerType);
+            return View(category);
         }
 
-        // POST: WorkerTypes/Delete/5
+        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var workerType = await _context.WorkerType.FindAsync(id);
-            _context.WorkerType.Remove(workerType);
+            var category = await _context.Category.FindAsync(id);
+            _context.Category.Remove(category);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool WorkerTypeExists(int id)
+        private bool CategoryExists(int id)
         {
-            return _context.WorkerType.Any(e => e.WorkerTypeId == id);
+            return _context.Category.Any(e => e.CategoryId == id);
         }
     }
 }

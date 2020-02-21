@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -37,5 +38,7 @@ namespace payroll_app.Models.repository
         [Display(Name = "Shift Time Span")]
         [Column("ShiftTimeSpan")]
         public TimeSpan TimeSpanz{ get; set; }
+
+        public ICollection<Employee> Employees { get; set; }
     }
 }

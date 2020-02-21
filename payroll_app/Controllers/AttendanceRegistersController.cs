@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,7 +14,6 @@ namespace payroll_app.Controllers
     {
         private readonly payroll_app_context _context;
 
-
         public AttendanceRegistersController(payroll_app_context context)
         {
             _context = context;
@@ -21,21 +22,19 @@ namespace payroll_app.Controllers
         // GET: AttendanceRegisters
         public async Task<IActionResult> Index()
         {
-            var payroll_app_context = _context.AttendanceRegister.Include(a => a.Employees);
-            return View(await payroll_app_context.ToListAsync());
+            return View(await _context.AttendanceRegister.ToListAsync());
         }
 
         // GET: AttendanceRegisters/Details/5
-        public async Task<IActionResult> Details(int? attendanceRegisterId)
+        public async Task<IActionResult> Details(int? id)
         {
-            if (attendanceRegisterId == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
             var attendanceRegister = await _context.AttendanceRegister
-                .Include(a => a.Employees)
-                .FirstOrDefaultAsync(m => m.AttendanceRegisterId == attendanceRegisterId);
+                .FirstOrDefaultAsync(m => m.AttendanceRegisterId == id);
             if (attendanceRegister == null)
             {
                 return NotFound();
@@ -47,8 +46,6 @@ namespace payroll_app.Controllers
         // GET: AttendanceRegisters/Create
         public IActionResult Create()
         {
-            
-            ViewData["EmployeeId"] = new SelectList(_context.Employee, "AttendanceRegisterId", "FirstName");
             return View();
         }
 
@@ -65,24 +62,22 @@ namespace payroll_app.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employee, "AttendanceRegisterId", "FirstName", attendanceRegister.EmployeeId);
             return View(attendanceRegister);
         }
 
         // GET: AttendanceRegisters/Edit/5
-        public async Task<IActionResult> Edit(int? attendanceRegisterId)
+        public async Task<IActionResult> Edit(int? id)
         {
-            if (attendanceRegisterId == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var attendanceRegister = await _context.AttendanceRegister.FindAsync(attendanceRegisterId);
+            var attendanceRegister = await _context.AttendanceRegister.FindAsync(id);
             if (attendanceRegister == null)
             {
                 return NotFound();
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employee, "AttendanceRegisterId", "FirstName", attendanceRegister.EmployeeId);
             return View(attendanceRegister);
         }
 
@@ -91,9 +86,9 @@ namespace payroll_app.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int attendanceRegisterId, [Bind("AttendanceRegisterId,EmployeeId,Attendance,AttendanceTime")] AttendanceRegister attendanceRegister)
+        public async Task<IActionResult> Edit(int id, [Bind("AttendanceRegisterId,EmployeeId,Attendance,AttendanceTime")] AttendanceRegister attendanceRegister)
         {
-            if (attendanceRegisterId != attendanceRegister.AttendanceRegisterId)
+            if (id != attendanceRegister.AttendanceRegisterId)
             {
                 return NotFound();
             }
@@ -118,21 +113,19 @@ namespace payroll_app.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employee, "AttendanceRegisterId", "FirstName", attendanceRegister.EmployeeId);
             return View(attendanceRegister);
         }
 
         // GET: AttendanceRegisters/Delete/5
-        public async Task<IActionResult> Delete(int? attendanceRegisterId)
+        public async Task<IActionResult> Delete(int? id)
         {
-            if (attendanceRegisterId == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
             var attendanceRegister = await _context.AttendanceRegister
-                .Include(a => a.Employees)
-                .FirstOrDefaultAsync(m => m.AttendanceRegisterId == attendanceRegisterId);
+                .FirstOrDefaultAsync(m => m.AttendanceRegisterId == id);
             if (attendanceRegister == null)
             {
                 return NotFound();
@@ -144,17 +137,17 @@ namespace payroll_app.Controllers
         // POST: AttendanceRegisters/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int attendanceRegisterId)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var attendanceRegister = await _context.AttendanceRegister.FindAsync(attendanceRegisterId);
+            var attendanceRegister = await _context.AttendanceRegister.FindAsync(id);
             _context.AttendanceRegister.Remove(attendanceRegister);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AttendanceRegisterExists(int attendanceRegisterId)
+        private bool AttendanceRegisterExists(int id)
         {
-            return _context.AttendanceRegister.Any(e => e.AttendanceRegisterId == attendanceRegisterId);
+            return _context.AttendanceRegister.Any(e => e.AttendanceRegisterId == id);
         }
     }
 }

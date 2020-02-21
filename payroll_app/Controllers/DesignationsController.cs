@@ -10,22 +10,22 @@ using payroll_app.Models.repository;
 
 namespace payroll_app.Controllers
 {
-    public class DepartmentsController : Controller
+    public class DesignationsController : Controller
     {
         private readonly payroll_app_context _context;
 
-        public DepartmentsController(payroll_app_context context)
+        public DesignationsController(payroll_app_context context)
         {
             _context = context;
         }
 
-        // GET: Departments
+        // GET: Designations
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Department.ToListAsync());
+            return View(await _context.Designations.ToListAsync());
         }
 
-        // GET: Departments/Details/5
+        // GET: Designations/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace payroll_app.Controllers
                 return NotFound();
             }
 
-            var department = await _context.Department
-                .FirstOrDefaultAsync(m => m.DepartmentId == id);
-            if (department == null)
+            var designation = await _context.Designations
+                .FirstOrDefaultAsync(m => m.DesignationId == id);
+            if (designation == null)
             {
                 return NotFound();
             }
 
-            return View(department);
+            return View(designation);
         }
 
-        // GET: Departments/Create
+        // GET: Designations/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Departments/Create
+        // POST: Designations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DepartmentId,DepartmentName,DepartmentCode,DepartmentFormula")] Department department)
+        public async Task<IActionResult> Create([Bind("DesignationId,DesignationName,DesignationCode,DesignationFormula")] Designation designation)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(department);
+                _context.Add(designation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(department);
+            return View(designation);
         }
 
-        // GET: Departments/Edit/5
+        // GET: Designations/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace payroll_app.Controllers
                 return NotFound();
             }
 
-            var department = await _context.Department.FindAsync(id);
-            if (department == null)
+            var designation = await _context.Designations.FindAsync(id);
+            if (designation == null)
             {
                 return NotFound();
             }
-            return View(department);
+            return View(designation);
         }
 
-        // POST: Departments/Edit/5
+        // POST: Designations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DepartmentId,DepartmentName,DepartmentCode,DepartmentFormula")] Department department)
+        public async Task<IActionResult> Edit(int id, [Bind("DesignationId,DesignationName,DesignationCode,DesignationFormula")] Designation designation)
         {
-            if (id != department.DepartmentId)
+            if (id != designation.DesignationId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace payroll_app.Controllers
             {
                 try
                 {
-                    _context.Update(department);
+                    _context.Update(designation);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DepartmentExists(department.DepartmentId))
+                    if (!DesignationExists(designation.DesignationId))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace payroll_app.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(department);
+            return View(designation);
         }
 
-        // GET: Departments/Delete/5
+        // GET: Designations/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace payroll_app.Controllers
                 return NotFound();
             }
 
-            var department = await _context.Department
-                .FirstOrDefaultAsync(m => m.DepartmentId == id);
-            if (department == null)
+            var designation = await _context.Designations
+                .FirstOrDefaultAsync(m => m.DesignationId == id);
+            if (designation == null)
             {
                 return NotFound();
             }
 
-            return View(department);
+            return View(designation);
         }
 
-        // POST: Departments/Delete/5
+        // POST: Designations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var department = await _context.Department.FindAsync(id);
-            _context.Department.Remove(department);
+            var designation = await _context.Designations.FindAsync(id);
+            _context.Designations.Remove(designation);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DepartmentExists(int id)
+        private bool DesignationExists(int id)
         {
-            return _context.Department.Any(e => e.DepartmentId == id);
+            return _context.Designations.Any(e => e.DesignationId == id);
         }
     }
 }

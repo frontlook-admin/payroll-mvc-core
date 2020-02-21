@@ -54,7 +54,7 @@ namespace payroll_app.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GradeId,GradeName,GradeCode,ArrangeOrder")] Grade grade)
+        public async Task<IActionResult> Create([Bind("GradeId,GradeName,GradeCode")] Grade grade)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace payroll_app.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("GradeId,GradeName,GradeCode,ArrangeOrder")] Grade grade)
+        public async Task<IActionResult> Edit(int id, [Bind("GradeId,GradeName,GradeCode")] Grade grade)
         {
             if (id != grade.GradeId)
             {

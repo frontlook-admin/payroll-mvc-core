@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using payroll_app.Data;
 
 namespace payroll_app.Migrations
 {
     [DbContext(typeof(payroll_app_context))]
-    partial class payroll_app_contextModelSnapshot : ModelSnapshot
+    [Migration("20200221073655_init00001")]
+    partial class init00001
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -206,6 +208,8 @@ namespace payroll_app.Migrations
                     b.HasKey("EmployeeId");
 
                     b.HasAlternateKey("AadharNo");
+
+                    b.HasAlternateKey("EmployeeName");
 
                     b.HasIndex("Category");
 

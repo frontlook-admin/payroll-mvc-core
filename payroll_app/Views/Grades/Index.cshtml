@@ -19,9 +19,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.GradeCode)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArrangeOrder)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -33,9 +30,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.GradeCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArrangeOrder)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.GradeId">Edit</a> |
