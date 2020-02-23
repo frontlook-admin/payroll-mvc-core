@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using JetBrains.Annotations;
 
 namespace payroll_app.Models.repository
 {
@@ -9,11 +10,11 @@ namespace payroll_app.Models.repository
     [Display(Name = "Employee",Description = "Stores Employee Basic Details.")]
     public class Employee
     {
-        [Column("Employee Id")]
+        [Column("Employee Id", Order = 0)]
         [Key]
         public string EmployeeId { get; set; }
 
-        [Column("Employee Photo")]
+        [Column("Employee Photo", Order = 1)]
         [Display(Name = "Employee Photo")]
         public byte[] EmployeePhoto { get; set; }
 
@@ -44,7 +45,7 @@ namespace payroll_app.Models.repository
             MatchTimeoutInMilliseconds = 1000)]
         public string FatherOrHusbandName { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date Of Birth")]
         [Column("Date Of Birth")]
         public DateTime DateOfBirth { get; set; }
@@ -89,6 +90,8 @@ namespace payroll_app.Models.repository
         [EmailAddress]
         public string EmailId { get; set; }
 
+        [Column("Pan No")]
+        [Display(Name = "Pan No.")]
         [RegularExpression(@"^[[A-Z]{5}[0-9]{4}[A-Z]{1}]*", ErrorMessage = "Incorrect PAN No...!!",
             MatchTimeoutInMilliseconds = 1000)]
         public string PanNo { get; set; }
@@ -118,19 +121,18 @@ namespace payroll_app.Models.repository
 
         public string OffDay { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Join Date")]
         [Column("Join Date")]
         public DateTime JoinDate { get; set; }
 
         //[DisplayFormat(DataFormatString = "{0:h:mm:sstt}", ApplyFormatInEditMode = true)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Last Working Date")]
         [Column("Last Working Date")]
         public DateTime LastWorkingDate { get; set; }
 
         public bool Active { get; set; }
-
 
         [ForeignKey("Department")]
         public Department Departments { get; set; }

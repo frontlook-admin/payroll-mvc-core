@@ -1,0 +1,51 @@
+﻿
+.mylinkbtn {
+    padding-top: 3px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-variant-caps: all-petite-caps;
+    font-size: large;
+    font-weight: 600;
+    letter-spacing: 1px;
+    justify-items: center
+}
+
+.mytabletext {
+    padding-top: 3px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-variant-caps: all-petite-caps;
+    font-size: large;
+    font-weight: 600;
+    letter-spacing: 1px;
+    justify-items: center
+}
+
+.myinput[type="file"] {
+    display: none;
+}
+
+.mycustom-file-upload {
+    border: 1px solid rgb(197, 197, 197);
+    border-radius: 4px 4px 4px 4px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    float: right;
+    width: 5.25em;
+    margin-left: 200px;
+}
+
+.myphoto {
+    width: 7em;
+    height: 9em;
+    border: 1px solid rgb(197, 197, 197);
+    border-radius: 4px 4px 4px 4px;
+    float: right;
+}
+
+.myphoto-rounded {
+    border-radius: 50%;
+}

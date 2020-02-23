@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -6,6 +6,15 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>frontlook_signature.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200222151919_init00003.cs" />
+    <Compile Remove="Migrations\20200222151919_init00003.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
 
 
   <ItemGroup>

@@ -13,9 +13,10 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"/>
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/mystyle.css" />
 </head>
 <body>
     <header>
@@ -30,18 +31,38 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Master Create
+                                Index
                             </a>
                             <!--
 
-    -->
+        -->
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" asp-controller="Employees" asp-action="Index">Employees</a>
                                 <a class="dropdown-item" asp-controller="AttendanceRegisters" asp-action="Index">Attendance</a>
                                 <a class="dropdown-item" asp-controller="Departments" asp-action="Index">Departments</a>
+                                <a class="dropdown-item" asp-controller="Designations" asp-action="Index">Designations</a>
                                 <a class="dropdown-item" asp-controller="Grades" asp-action="Index">Grades</a>
-                                <a class="dropdown-item" asp-controller="Categories" asp-action="Index">Worker Types</a>
+                                <a class="dropdown-item" asp-controller="Categories" asp-action="Index">Worker Category</a>
                                 <a class="dropdown-item" asp-controller="Shifts" asp-action="Index">Shifts</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Master
+                            </a>
+                            <!--
+
+                            -->
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-controller="Employees" asp-action="Create">Employees</a>
+                                <a class="dropdown-item" asp-controller="AttendanceRegisters" asp-action="Create">Attendance</a>
+                                <a class="dropdown-item" asp-controller="Departments" asp-action="Create">Departments</a>
+                                <a class="dropdown-item" asp-controller="Designations" asp-action="Create">Designations</a>
+                                <a class="dropdown-item" asp-controller="Grades" asp-action="Create">Grades</a>
+                                <a class="dropdown-item" asp-controller="Categories" asp-action="Create">Worker Category</a>
+                                <a class="dropdown-item" asp-controller="Shifts" asp-action="Create">Shifts</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>

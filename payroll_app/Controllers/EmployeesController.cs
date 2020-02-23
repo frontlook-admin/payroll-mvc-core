@@ -78,11 +78,36 @@ namespace payroll_app.Controllers
             return View(employee);
         }
 
+        private byte[] Picshow(IFormFile EmployeePhoto = null)
+        {
+            byte[] c = null;
+            if (EmployeePhoto != null)
+            {
+                if (EmployeePhoto.Length > 0)
+                    //Convert Image to byte and save to database
+                {
+                    using (var ms1 = new MemoryStream())
+                    {
+                        EmployeePhoto.CopyToAsync(ms1);
+                        c = ms1.ToArray();
+                    }
+                }
+            }
+            else
+            {
+                c = System.IO.File.ReadAllBytes(_varimg.Randuserimgchooser(_hosting_environment.WebRootPath));
+            }
+            
+            return c;
+        }
+
         // GET: Employees/Create
         public IActionResult Create()
         {
-            var b = System.IO.File.ReadAllBytes(_varimg.Userimgchooser(_hosting_environment.WebRootPath));
-            ViewBag.photo = Convert.ToBase64String(b);
+            
+            //var b = System.IO.File.ReadAllBytes(_varimg.Userimgchooser(_hosting_environment.WebRootPath));
+            //ViewBag.photo = Convert.ToBase64String(b);
+            ViewBag.photo = Convert.ToBase64String(Picshow());
             ViewData["Category"] = new SelectList(_context.Category, "CategoryId", "CategoryCode");
             ViewData["Department"] = new SelectList(_context.Department, "DepartmentId", "DepartmentCode");
             ViewData["Designation"] = new SelectList(_context.Designations, "DesignationId", "DesignationCode");
@@ -96,30 +121,21 @@ namespace payroll_app.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmployeeId,EmployeePhoto,AdultRegistrationNo,EmployeeCode,PfNo,EmployeeName,FatherOrHusbandName,DateOfBirth,Gender,PermanentAddress,CurrentAddress,Nominee,MobileNo,EmailId,PanNo,AadharNo,Department,Designation,Grade,Category,Shift,OffDay,JoinDate,LastWorkingDate,Active")] Employee employee, IFormFile EmployeePhoto)
+        public async Task<IActionResult> Create([Bind("EmployeeId,EmployeePhoto,AdultRegistrationNo,EmployeeCode,PfNo,EmployeeName,FatherOrHusbandName,DateOfBirth,Gender,PermanentAddress,CurrentAddress,Nominee,MobileNo,EmailId,PanNo,AadharNo,Department,Designation,Grade,Category,Shift,OffDay,JoinDate,LastWorkingDate,Active")] Employee employee, IFormFile EmployeePhoto = null)
         {
 
-            var b = System.IO.File.ReadAllBytes(_varimg.Randuserimgchooser(_hosting_environment.WebRootPath));
-            byte[] c = null;
-            if (EmployeePhoto != null)
-            {
-                if (EmployeePhoto.Length > 0)
-                    //Convert Image to byte and save to database
-                {
-                    using (var ms1 = new MemoryStream())
-                    {
-                        await EmployeePhoto.CopyToAsync(ms1);
-                        c = ms1.ToArray();
-                        ViewBag.photo = Convert.ToBase64String(c);
-                    }
-                }
-            }
+            //var b = System.IO.File.ReadAllBytes(_varimg.Randuserimgchooser(_hosting_environment.WebRootPath));
+            //byte[] c = Picshow(EmployeePhoto);
 
             if (ModelState.IsValid)
             {
-                if (!c.Equals(null))
+                if (EmployeePhoto != null)
                 {
-                    employee.EmployeePhoto = c;
+                    employee.EmployeePhoto = Picshow(EmployeePhoto);
+                }
+                else
+                {
+                    employee.EmployeePhoto = null;
                 }
 
                 _context.Add(employee);
@@ -162,7 +178,7 @@ namespace payroll_app.Controllers
                 im = b;
             }
 
-            ViewBag.photo = im;
+            ViewBag.photo = Convert.ToBase64String(im);
 
             ViewData["Category"] = new SelectList(_context.Category, "CategoryId", "CategoryCode", employee.Category);
             ViewData["Department"] = new SelectList(_context.Department, "DepartmentId", "DepartmentCode", employee.Department);

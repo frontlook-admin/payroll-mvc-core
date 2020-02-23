@@ -11,13 +11,15 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="EmployeePhoto" class="control-label"></label>
-                <img class="img-thumbnail" style="width: 100px; height: 100px;" id="s_img" src="data:image/jpeg;base64,@ViewBag.photo"
+                <div class="form-group">
+                <img class="img-thumbnail img-rounded myphoto-rounded" style="width: 100px; height: 100px;" id="s_img" src="data:image/jpeg;base64,@ViewBag.photo"
                      alt="No Image" />
-                <input type="file" id="image" asp-for="EmployeePhoto" class="form-control custom-file" accept=".jpg,.jpeg,.png" />
+                <input type="file" id="imag" asp-for="EmployeePhoto" class="form-control custom-file" onchange="DoPostBack();" accept=".jpg,.jpeg,.png" />
+                </div>
                 <span asp-validation-for="EmployeePhoto" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -47,7 +49,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="DateOfBirth" class="control-label"></label>
-                <input asp-for="DateOfBirth" class="form-control" />
+                <input asp-for="DateOfBirth" type="date" class="form-control" />
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -92,23 +94,23 @@
             </div>
             <div class="form-group">
                 <label asp-for="Department" class="control-label"></label>
-                <select asp-for="Department" class ="form-control" asp-items="ViewBag.Department"></select>
+                <select asp-for="Department" class="form-control" asp-items="ViewBag.Department"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Designation" class="control-label"></label>
-                <select asp-for="Designation" class ="form-control" asp-items="ViewBag.Designation"></select>
+                <select asp-for="Designation" class="form-control" asp-items="ViewBag.Designation"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Grade" class="control-label"></label>
-                <select asp-for="Grade" class ="form-control" asp-items="ViewBag.Grade"></select>
+                <select asp-for="Grade" class="form-control" asp-items="ViewBag.Grade"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
-                <select asp-for="Category" class ="form-control" asp-items="ViewBag.Category"></select>
+                <select asp-for="Category" class="form-control" asp-items="ViewBag.Category"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Shift" class="control-label"></label>
-                <select asp-for="Shift" class ="form-control" asp-items="ViewBag.Shift"></select>
+                <select asp-for="Shift" class="form-control" asp-items="ViewBag.Shift"></select>
             </div>
             <div class="form-group">
                 <label asp-for="OffDay" class="control-label"></label>
@@ -117,12 +119,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="JoinDate" class="control-label"></label>
-                <input asp-for="JoinDate" class="form-control" />
+                <input asp-for="JoinDate" type="date" class="form-control" />
                 <span asp-validation-for="JoinDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="LastWorkingDate" class="control-label"></label>
-                <input asp-for="LastWorkingDate" class="form-control" />
+                <input asp-for="LastWorkingDate" type="date" class="form-control" />
                 <span asp-validation-for="LastWorkingDate" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
@@ -141,6 +143,24 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        //Preview & Update an image before it is uploaded
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#s_img').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imag").change(function () {
+            readURL(this);
+        });
+    </script>
 }
