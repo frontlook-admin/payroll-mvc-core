@@ -6,7 +6,12 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{63EB016E-B533-47B2-B6BB-9781F7DBC670}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		jaikishandas_mall_payroll.xlsx = jaikishandas_mall_payroll.xlsx
+		Payroll Entry.mpp = Payroll Entry.mpp
+		Payroll Master.mpp = Payroll Master.mpp
+		PayRoll Timeline.mpp = PayRoll Timeline.mpp
 		Payroll.xlsx = Payroll.xlsx
+		PRINT SCREEN OF WAGES.xlsx = PRINT SCREEN OF WAGES.xlsx
 		WAGES PACKAGE.xlsx = WAGES PACKAGE.xlsx
 	EndProjectSection
 EndProject

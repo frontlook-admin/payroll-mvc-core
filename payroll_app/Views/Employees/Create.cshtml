@@ -16,9 +16,9 @@
             <div class="form-group">
                 <label asp-for="EmployeePhoto" class="control-label"></label>
                 <div class="form-group">
-                <img class="img-thumbnail img-rounded myphoto-rounded" style="width: 100px; height: 100px;" id="s_img" src="data:image/jpeg;base64,@ViewBag.photo"
-                     alt="No Image" />
-                <input type="file" id="imag" asp-for="EmployeePhoto" class="form-control custom-file" onchange="DoPostBack();" accept=".jpg,.jpeg,.png" />
+                    <img class="img-thumbnail img-rounded myphoto-rounded" style="width: 100px; height: 100px;" id="s_img" src="data:image/jpeg;base64,@ViewBag.photo"
+                         alt="No Image" />
+                    <input type="file" id="imag" asp-for="EmployeePhoto" class="form-control custom-file" accept=".jpg,.jpeg,.png" />
                 </div>
                 <span asp-validation-for="EmployeePhoto" class="text-danger"></span>
             </div>
@@ -59,13 +59,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="PermanentAddress" class="control-label"></label>
-                <input asp-for="PermanentAddress" class="form-control" />
+                <input id="padr" name="pradr" asp-for="PermanentAddress" class="form-control" />
                 <span asp-validation-for="PermanentAddress" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CurrentAddress" class="control-label"></label>
-                <input asp-for="CurrentAddress" class="form-control" />
-                <span asp-validation-for="CurrentAddress" class="text-danger"></span>
+                <input type="checkbox" class="custom-checkbox" id="same_permanentaddress" onclick="copyfield();"/>
+                <b>@Html.Label("Same as permanent address")</b>
+                <div class="form-group">
+                    <label asp-for="CurrentAddress" class="control-label"></label>
+                    <input id="cadr" asp-for="CurrentAddress" name="pradr" class="form-control" />
+                    <span asp-validation-for="CurrentAddress" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Nominee" class="control-label"></label>
@@ -158,6 +162,21 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+
+        function copyfield(input) {
+            //var b = $("#same_permanentaddress").selected;
+            var v = $("cadr").Text;
+            if ($("#same_permanentaddress").checked) {
+
+                $("cadr").Text = $("padr").Text;
+            } else {
+                $("cadr").Text = v;
+            }
+        }
+
+        $("#same_permanentaddress").checkbox.change(function() { copyfield(this) });
+
+        
 
         $("#imag").change(function () {
             readURL(this);
